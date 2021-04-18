@@ -1,15 +1,16 @@
 const os = require('os');
+const log = require("./logger.js")
 
 function toMB(mem) {
     let mbMem =
-        mem /* * bites */
-        / 1024 /* * kb */
-        / 1024 /* * mb */;
+        mem // * bites
+        / 1024 // * kb
+        / 1024 // * mb;
     return parseInt(mbMem); 
 };  
 
 setInterval(()=>{
-    const { freemem, totalmem } = os; /* ! desestruturação */
+    const { freemem, totalmem } = os; // ! desestruturação
 
     const total = toMB(totalmem());
     const mem = toMB(freemem());
@@ -24,4 +25,7 @@ setInterval(()=>{
     console.clear();
     console.log(" ====== PC STATS ======");
     console.table(stats);
+
+    log(`${JSON.stringify(stats)}\n`);
+
 }, 1000);
